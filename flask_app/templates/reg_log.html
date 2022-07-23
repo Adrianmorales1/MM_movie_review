@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register/Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/reg_log.css')}}">
+</head>
+<body>
+    {% with messages = get_flashed_messages(category_filter=['session']) %}
+                {% if messages %}
+                    <div class = 'error' id = 'margin-top'>
+                        <p>INVALID!!!!</p>
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+    <div class = "containers">
+        <div class = "container">
+            <h1 id = "blue">Register</h1>
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                <div class = 'error'>
+                    <p>INVALID!!!!</p>
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <form action="/reg/user" method = 'post'>
+                <label>First Name:</label>
+                <input type="text" name="first_name">
+                <label>Last Name:</label>
+                <input type="text" name="last_name">
+                <label>Email:</label>
+                <input type="email" name="email">
+                <label>Password:</label>
+                <input type="password" name="password">
+                <label>Confirm Password:</label>
+                <input type="password" name="confirm_password">
+                <button class = "regbutton">Register</button>
+            </form>
+        </div>
+
+        <div class = "container">
+            <h1 id = "green">Login</h1>
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
+                {% if messages %}
+                    <div class = 'error'>
+                        <p>INVALID!!!!</p>
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form action="/login" method = 'post'>
+                <label>Email:</label>
+                <input type="email" name="email">
+                <label>Password:</label>
+                <input type="password" name="password">
+                <button class = "logbutton">Login</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

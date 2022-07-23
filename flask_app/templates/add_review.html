@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+</head>
+<body>
+    <a href="/dashboard">go back to Dashboard</a>
+    <h1>Add Review</h1>
+    <form action="/add/review/one" method = "post">
+        <label>title</label>
+        <input type="text" name="title">
+        <label>rating</label>
+        <input type="number" name="rating">
+        <label>date watched</label>
+        <input type="date" name="date_watched">
+        <label>content</label>
+        <textarea name="content"></textarea>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

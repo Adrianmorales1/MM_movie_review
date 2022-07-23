@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+<body>
+    <a href="/dashboard">go back to Dashboard</a>
+    <h1>Title:</h1>
+    <h3>{{review.title}}</h3>
+
+    <h1>Rating:</h1>
+    <h3>{{review.rating}}</h3>
+
+    <h1>Date Watched:</h1>
+    <h3>{{review.date_watched}}</h3>
+
+    <h1>Content:</h1>
+    <h3>{{review.content}}</h3>
+    <h1>Users who favorited this review</h1>
+    {% for user_who_favorited in review.users_who_favorited %}
+        <p>{{user_who_favorited.first_name}} {{user_who_favorited.last_name}}</p>
+    {% endfor %}
+</body>
+</html>

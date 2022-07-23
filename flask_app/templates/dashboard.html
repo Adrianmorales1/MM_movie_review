@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/dashboard.css')}}">
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <div>
+                <h1>Welcome, {{user.first_name}}</h1>
+            </div>
+            <div class="navbar-r">
+                <a href="/add/review">Add Review</a>
+                <form action="/reset">
+                    <button>Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <h3>Reviews</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Number of Users Who Favorited</th>
+                <th>title</th>
+                <th>rating</th>
+                <th>date watched</th>
+                <th>content</th>
+                <th>Action</th>
+            </tr>
+            {% for review in all_reviews %}
+            <tr>
+                <td>{{review.creator.first_name}} {{review.creator.last_name}}</td>
+                <th>{{review.user_ids_who_favorited | length}}
+                    {% if session.user_id in review.user_ids_who_favorited %}
+                        <form action="/reviews/{{review.id}}/unfavorite" method = "post">
+                            <input type="hidden" name="id" value = {{review.id}}>
+                            <input type="hidden" name="user_id" value = {{session.user_id}}>
+                            <button>Unlike Review</button>
+                        </form>
+                    {% else %}
+                        <form action="/reviews/{{review.id}}/favorite" method = "post">
+                            <input type="hidden" name="id" value = {{review.id}}>
+                            <input type="hidden" name="user_id" value = {{session.user_id}}>
+                            <button>Like Review</button>
+                        </form>
+                    {% endif %}
+
+                </th>
+                <td>{{review.title}}</td>
+                <td>{{review.rating}}</td>
+                <td>{{review.date_watched}}</td>
+                <td>{{review.content}}</td>
+                <td>
+                    <a href="/show/{{review.id}}">Show</a>
+                    {% if user.id == review.creator.id %}
+                    <a href="/edit/{{review.id}}">Edit</a>
+                    <a href="/delete/{{review.id}}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>

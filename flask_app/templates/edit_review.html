@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/dashboard">go back to Dashboard</a>
+    <h1>Edit Review</h1>
+    <form action="/edit/review/one" method = "post">
+        <input type="hidden" name="id" value = "{{review.id}}">
+        <label>title</label>
+        <input type="text" name="title" value = '{{review.title}}'>
+        <label>rating</label>
+        <input type="number" name="rating" value = {{review.rating}}>
+        <label>date watched</label>
+        <input type="date" name="date_watched" value = {{review.date_watched}}>
+        <label>content</label>
+        <textarea name="content">{{review.content}}</textarea>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
